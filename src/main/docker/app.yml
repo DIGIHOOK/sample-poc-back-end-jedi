@@ -1,0 +1,13 @@
+version: '2'
+services:
+    samplepocbackendjedi-app:
+        image: samplepocbackendjedi
+        environment:
+            # - _JAVA_OPTIONS=-Xmx512m -Xms256m
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+            - SPRING_DATA_ELASTICSEARCH_CLUSTER_NODES=samplepocbackendjedi-elasticsearch:9300
+    samplepocbackendjedi-elasticsearch:
+        extends:
+            file: elasticsearch.yml
+            service: samplepocbackendjedi-elasticsearch
